@@ -16,7 +16,7 @@ function sendBonus($line = null)
             $onlineGM = explode("=", explode(":",  $line)[5])[1];
             $isGM = getRoleBase($onlineGM);
             $userID = $isGM['userid'];
-            $goldBonus = 100000; //gold 1000
+            $goldBonus = $config['goldBonus'] * 100;
 
             $mysqli = new mysqli($config['mysql']['host'], $config['mysql']['user'], $config['mysql']['password'], $config['mysql']['db']);
             if (!$mysqli->connect_errno) {

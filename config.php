@@ -16,6 +16,6 @@ $config['mysql'] = array(
 
 $config['chanel'] = 9;
 
-$config['bonusMsg'] = 1000;
+$config['goldBonus'] = 1000; 
 
 ?>
