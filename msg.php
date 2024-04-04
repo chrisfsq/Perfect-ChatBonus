@@ -2,7 +2,7 @@
 
 
 $msg = array(	
-	"{{player}} RECEBEU {{bonus}} GOLD BONUS!"
+	"Conquistei o cultivo {{cultivation}} e recebi {{bonus}} GOLD BONUS!"
 );
 
 

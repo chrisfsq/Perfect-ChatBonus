@@ -292,23 +292,6 @@ function getRoleBase($role)
         13      =>      "Paladino",
     );
 
-    $ArrCultivo = array(
-        0 => "Leal",
-        1 => "Astuto",
-        2 => "Harmonioso",
-        3 => "Lúcido",
-        4 => "Enigmático",
-        5 => "Ameaçador",
-        6 => "Sinistro",
-        7 => "Nirvana",
-        8 => "Mahayana",
-        20 => "Nobre",
-        30 => "Diabólico",
-        21 => "Iluminado",
-        31 => "Infernal",
-        32 => "Demoníaco",
-        22 => "Imortal"
-    );
 
     $clsInt = $user['cls'];
 
@@ -391,6 +374,37 @@ function getRoleStatus($role)
             ),
         )
     );
+
+    $ArrCultivo = array(
+        0 => "Leal",
+        1 => "Astuto",
+        2 => "Harmonioso",
+        3 => "Lúcido",
+        4 => "Enigmático",
+        5 => "Ameaçador",
+        6 => "Sinistro",
+        7 => "Nirvana",
+        8 => "Mahayana",
+        20 => "Nobre",
+        30 => "Diabólico",
+        21 => "Iluminado",
+        31 => "Infernal",
+        32 => "Demoníaco",
+        22 => "Imortal"
+    );
+
+    $cultInt = $user['status']['level2'];
+
+
+    if (array_key_exists($cultInt, $ArrCultivo)) {
+
+        $cultString = $ArrCultivo[$cultInt];
+
+
+
+        $user['cult_string'] = $cultString;
+    } else {
+    }
 
     return $user;
 }
