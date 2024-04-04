@@ -4,10 +4,10 @@ require('./config.php');
 
 //API
 
-function chatInGame($text)
+function chatInGame($text, $role)
 {
     global $config;
-    $pack = pack("CCN", $config['chanel'], 0, 0) . packString($text) . packOctet('');
+    $pack = pack("CCN", $config['chanel'], 0, $role) . packString($text) . packOctet('');
     SendToProvider(createHeader(120, $pack));
     return true;
 }
@@ -323,6 +323,74 @@ function getRoleBase($role)
         $user['cls_string'] = $clsString;
     } else {
     }
+
+    return $user;
+}
+
+function getRoleStatus($role)
+{
+    $pack = pack("N*", -1, $role);
+    $pack = createHeader(3015, $pack);
+    $send = SendToGamedBD($pack);
+    $data = deleteHeader($send);
+    $user = unmarshal(
+        $data,
+        array(
+            'status' => array(
+                'sversion' => 'byte',
+                'level' => 'int',
+                'level2' => 'int',
+                'exp' => 'int',
+                'sp' => 'int',
+                'pp' => 'int',
+                'hp' => 'int',
+                'mp' => 'int',
+                'posx' => 'float',
+                'posy' => 'float',
+                'posz' => 'float',
+                'worldtag' => 'int',
+                'invader_state' => 'int',
+                'invader_time' => 'int',
+                'pariah_time' => 'int',
+                'reputation' => 'int',
+                'custom_status' => 'octets',
+                'filter_data' => 'octets',
+                'charactermode' => 'octets',
+                'instancekeylist' => 'octets',
+                'dbltime_expire' => 'int',
+                'dbltime_mode' => 'int',
+                'dbltime_begin' => 'int',
+                'dbltime_used' => 'int',
+                'dbltime_max' => 'int',
+                'time_used' => 'int',
+                'dbltime_data' => 'octets',
+                'storesize' => 'short',
+                'petcorral' => 'octets',
+                'property' => 'octets',
+                'var_data' => 'octets',
+                'skills' => 'octets',
+                'storehousepasswd' => 'octets',
+                'waypointlist' => 'octets',
+                'coolingtime' => 'octets',
+                'npc_relation' => 'octets',
+                'multi_exp_ctrl' => 'octets',
+                'storage_task' => 'octets',
+                'faction_contrib' => 'octets',
+                'force_data' => 'octets',
+                'online_award' => 'octets',
+                'profit_time_data' => 'octets',
+                'country_data' => 'octets',
+                'king_data' => 'octets',
+                'meridian_data' => 'octets',
+                'extraprop' => 'octets',
+                'title_data' => 'octets',
+                'reincarnation_data' => 'octets',
+                'realm_data' => 'octets',
+                'reserved2' => 'byte',
+                'reserved3' => 'byte',
+            ),
+        )
+    );
 
     return $user;
 }
