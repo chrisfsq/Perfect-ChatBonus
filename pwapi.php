@@ -393,18 +393,20 @@ function getRoleStatus($role)
         22 => "Imortal"
     );
 
-    $cultInt = $user['status']['level2'];
+    $cultString = "";
 
+    // Verifica se 'level2' está definido em $user['status']
+    if (isset($user['status']['level2'])) {
+        $cultInt = $user['status']['level2'];
 
-    if (array_key_exists($cultInt, $ArrCultivo)) {
-
-        $cultString = $ArrCultivo[$cultInt];
-
-
-
-        $user['cult_string'] = $cultString;
-    } else {
+        // Verifica se $cultInt existe no array $ArrCultivo
+        if (array_key_exists($cultInt, $ArrCultivo)) {
+            $cultString = $ArrCultivo[$cultInt];
+        }
     }
+
+    // Adiciona a string de cultivo ao array de dados do usuário
+    $user['cult_string'] = $cultString;
 
     return $user;
 }

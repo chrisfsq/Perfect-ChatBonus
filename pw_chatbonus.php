@@ -6,6 +6,7 @@ require('./pwapi.php');
 
 $argv[1]($argv[2]);
 
+
 function sendBonus($line = null)
 {
     global $config;
@@ -31,18 +32,36 @@ function sendBonus($line = null)
             }
 
 
+
             if ($level == 22 || $level == 32) {
+                // Verifica se 'cult_string' está definido em $getStatus
+                if (isset($getStatus['cult_string'])) {
+                    $cultString = $getStatus['cult_string'];
+                } else {
+                    // Define uma string padrão se 'cult_string' não estiver definido
+                    $cultString = "Default Cultivation";
+                }
+            
+                // Verifica se 'id' está definido em $isGM
+                if (isset($isGM['id'])) {
+                    $gmId = $isGM['id'];
+                } else {
+                    // Define um ID padrão se 'id' não estiver definido
+                    $gmId = 0;
+                }
+            
+                // Continua com o restante do código
                 $key = mt_rand(0, count($msg) - 1);
-                $msg[$key] = str_replace('{{cultivation}}', $onlineGM['cult_string'], $msg[$key]);
+                $msg[$key] = str_replace('{{cultivation}}', $cultString, $msg[$key]);
                 $msg[$key] = str_replace('{{bonus}}', $config['goldBonus'], $msg[$key]);
-                chatInGame($msg[$key], $isGM['id']);
-
-
+                chatInGame($msg[$key], $gmId);
+            
+            
                 $date = date("Y-m-d H:i:s");
                 $sqlInsertCash = "INSERT INTO `usecashnow`(userid, zoneid, sn, aid, point, cash, status, creatime) VALUES ('$userID', '1', '0', '1', '0', '$goldBonus', '1', '$date')";
                 $queryCash = $mysqli->query($sqlInsertCash);
-
-
+            
+            
                 $sqlInsertBonusLog = "INSERT INTO `usebonuslog`(userid, bonuslog) VALUES ('$userID', '$goldBonus')";
                 $queryBonusLog = $mysqli->query($sqlInsertBonusLog);
             }
