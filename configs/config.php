@@ -1,15 +1,24 @@
 <?php
-//PROTOCOL SETTINGS, DO NOT CHANGE.
+//PROTOCOL VERSION
 $config['serverversion'] = "151";
 
-$config['goldBonus'] = 1000; 
-
-$config['missionsGoldMap'] = [
-    33469 => 50, // task 60101 gives 50 gold
-    60102 => 100, // task 60102 gives 100 gold
-    60103 => 200, // task 60103 gives 200 gold
-    // Add more tasks as needed
-];
+//BONUS FUNCTION CONFIGS
+$config['gmID'] = "1074"; 
+$config['gmNick'] = "GM";
+$config['goldBonus'] = 1000;
+$config['money'] = "0";
+$config['item'] = array(
+    'id' => "12979",
+    'pos' => "0",
+    'count' => "100",
+    'max_count' => "1000",
+    'data' => "",
+    'proctype' => "8",
+    'expire_date' => "0",
+    'guid1' => "0",
+    'guid2' => "0",
+    'mask' => "0"
+);
 
 //MYSQL CONFIGS
 $config['mysql'] = array(
