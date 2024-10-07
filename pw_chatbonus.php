@@ -31,8 +31,6 @@ function sendBonus($line = null)
                 }
             }
 
-
-
             if ($level == 22 || $level == 32) {
                 // verifica se 'cult_string' está definido em $getStatus
                 if (isset($getStatus['cult_string'])) {
@@ -49,13 +47,11 @@ function sendBonus($line = null)
  
                     $gmId = 0;
                 }
-            
 
                 $key = mt_rand(0, count($msg) - 1);
                 $msg[$key] = str_replace('{{cultivation}}', $cultString, $msg[$key]);
                 $msg[$key] = str_replace('{{bonus}}', $config['goldBonus'], $msg[$key]);
                 chatInGame($msg[$key], $gmId);
-            
             
                 $date = date("Y-m-d H:i:s");
                 $sqlInsertCash = "INSERT INTO `usecashnow`(userid, zoneid, sn, aid, point, cash, status, creatime) VALUES ('$userID', '1', '0', '1', '0', '$goldBonus', '1', '$date')";
