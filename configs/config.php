@@ -1,11 +1,11 @@
 <?php
-//PROTOCOL VERSION
-$config['serverversion'] = "151";
 
 //BONUS FUNCTION CONFIGS
 $config['gmID'] = "1074"; 
 $config['gmNick'] = "GM";
-$config['goldBonus'] = 1000;
+
+$config['goldBonus'] = 1000; //quantidade de gold
+
 $config['money'] = "0";
 $config['item'] = array(
     'id' => "12979",
@@ -20,6 +20,12 @@ $config['item'] = array(
     'mask' => "0"
 );
 
+//Tipo de requerimento: 1 ativado - 0 desativado
+$config['BonusPorCultivo'] = 1; //evil3 e god3
+$config['BonusPorLevel'] = 0; //level 100
+$config['BonusPorLiga'] = 0;
+
+
 //MYSQL CONFIGS
 $config['mysql'] = array(
     "host" => "localhost",
@@ -27,6 +33,11 @@ $config['mysql'] = array(
     "password" => "1234",
     "db" => "pw"
 );
+
+//--------------------------------------------------------DON'T CHANGE--------------------------------------------------------------//
+
+//PROTOCOL VERSION
+$config['serverversion'] = "151";
 
 //SERVER CONNECTION CONFIGS
 $config["ip"] = "127.0.0.1";
